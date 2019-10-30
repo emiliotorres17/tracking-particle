@@ -44,12 +44,12 @@ def cube_locator(
     # Locations from 2.0*pi <= x <= 0.0                                   #
     #---------------------------------------------------------------------#
     elif x < 0.0 and abs(x) < 2.0*pi:
-        pos     = 2.0*pi - abs(x) 
+        pos     = 2.0*pi - abs(x)
     #---------------------------------------------------------------------#
     # Locations from x < 2.0*pi                                           #
     #---------------------------------------------------------------------#
     elif x < 0.0 and abs(x)> 2.0*pi:
-        N       = x/(2.0*pi)
+        N       = abs(x/(2.0*pi))
         part    = N - np.floor(N)
         pos     = 2.0*pi - 2.0*pi*part
     elif x > 0.0 and x < 2.0*pi:
@@ -76,11 +76,14 @@ if __name__ == "__main__":
                                         # test values 0.0 <= x <= 2.0*pi
     xneg        = np.array([-0.23, -1.58, -3.65, -0.85, -7.85])
                                         # test values x < 0.0
-    solpos      = np.array([0.01681469282, 3.878360733, 2.817626092,
+    solpos      = np.array([0.01681469282, 3.878360733, 2.817626092,\
                                 0.9168146928, 0.2668146928])
                                         # solutions x > 2.0*pi
-    solcube     = np.array([5.83, 0.50, 4.13, 6.20, 5.11]) 
+    solcube     = np.array([5.83, 0.50, 4.13, 6.20, 5.11])
                                         # solutions 0.0 <= x <= 2.0*pi
+    solneg      = np.array([6.053185307, 4.703185307, 2.633185307,\
+                                5.433185307, 4.716370614])
+                                        # solution for negative values
     tol         = 1e-05
     #---------------------------------------------------------------------#
     # Testing the positive values greater then 2.0*pi                     #
@@ -127,6 +130,5 @@ if __name__ == "__main__":
             results = "***** Test #%i failed \t\t error= = %.5e \t\t calc = %.7f \t\t exp = %.7f"\
                                     %(i + 1, err, calc, sol)
             print(results)
-
 
     sys.exit(0)
