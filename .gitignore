@@ -1,0 +1,10 @@
+ # delete temporary files
+ *.swp
+ *.swx
+ *.sw*
+ # delete latex files
+ *.aux
+ *.tof
+ *.toc
+ *.bib
+ *.tol
